@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 240" fill="none">
+  <defs>
+    <radialGradient id="wash"><stop stop-color="#E7DCE3" stop-opacity=".8"/><stop offset="1" stop-color="#F8F2F6" stop-opacity="0"/></radialGradient>
+    <g id="vehicle"><rect x="-15" y="-7.5" width="30" height="15" rx="5" fill="#FCF8FB" stroke="#926780" stroke-width="1.5"/><path d="M-6-5v10M6-5v10" stroke="#B294A7" stroke-width="1.2"/><path d="M-13-3v6m26-6v6" stroke="#926780" stroke-width="2" stroke-linecap="round"/></g>
+  </defs>
+  <ellipse cx="150" cy="120" rx="145" ry="115" fill="url(#wash)"/>
+  <path d="M113 15h63v62c0 9 8 16 17 16h87v59h-87c-9 0-17 8-17 17v56h-63v-56c0-9-8-17-17-17H20V93h76c9 0 17-7 17-16z" fill="#EDE2EA" stroke="#D8C5D2" stroke-width="1.2"/>
+  <path d="M144 18v65m0 85v54M24 123h70m101 0h82" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="7 8"/>
+  <path d="M25 139h106c16 0 31-11 31-28V23" stroke="#A47894" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 6"/>
+  <path d="M129 218v-85c0-15 11-25 26-25h120" stroke="#C19EB5" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 6"/>
+  <circle cx="162" cy="63" r="23" stroke="#B492A9" stroke-opacity=".45"/>
+  <circle cx="162" cy="63" r="34" stroke="#CDB6C6" stroke-opacity=".55" stroke-dasharray="2 5"/>
+  <use href="#vehicle" transform="translate(73 139)"/>
+  <use href="#vehicle" transform="translate(162 63) rotate(-90)"/>
+  <use href="#vehicle" transform="translate(226 108)"/>
+  <circle cx="101" cy="139" r="2.5" fill="#A47894"/>
+  <circle cx="162" cy="91" r="2.5" fill="#A47894"/>
+  <circle cx="194" cy="108" r="2.5" fill="#C19EB5"/>
+  <path d="M30 48v8m-4-4h8M262 192v8m-4-4h8" stroke="#C1A2B6" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 920" fill="none">
+  <defs>
+    <linearGradient id="road-fade" x1="20" y1="150" x2="520" y2="650" gradientUnits="userSpaceOnUse"><stop stop-color="#9392B4" stop-opacity=".55"/><stop offset="1" stop-color="#9392B4" stop-opacity="0"/></linearGradient>
+    <g id="car"><rect x="-19" y="-9" width="38" height="18" rx="6" fill="#FFF" stroke="#7D6897" stroke-width="1.6"/><path d="M-8-6v12M8-6v12" stroke="#BC98AD" stroke-width="1.2"/><path d="M-16-5v10m32-10v10" stroke="#9392B4" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="road">
+      <path d="M-100 155H80c195 0 85 355 300 355h175M-100 245H80c105 0-5 355 210 355h265" stroke="url(#road-fade)" stroke-width="1.4"/>
+      <path d="M-100 200H80c150 0 40 355 255 355h220" stroke="#9392B4" stroke-opacity=".35" stroke-width="1.2" stroke-dasharray="7 12"/>
+      <path d="M-50 177H80c170 0 62 355 280 355h160" stroke="#915D7B" stroke-opacity=".4" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="3 9"/>
+    </g>
+  </defs>
+  <g opacity=".85">
+    <use href="#road"/>
+    <use href="#road" transform="translate(1800 40) scale(-1 1)"/>
+    <use href="#car" transform="translate(205 325) rotate(70)"/>
+    <use href="#car" transform="translate(310 528) rotate(20)"/>
+    <use href="#car" transform="translate(1580 400) rotate(-65)"/>
+    <use href="#car" transform="translate(1500 564) rotate(-20)"/>
+  </g>
+  <g stroke="#9392B4" stroke-opacity=".4">
+    <circle cx="205" cy="325" r="30"/>
+    <circle cx="205" cy="325" r="45" stroke-dasharray="2 7"/>
+    <circle cx="1580" cy="400" r="30"/>
+    <circle cx="1580" cy="400" r="45" stroke-dasharray="2 7"/>
+  </g>
+  <g fill="#BC98AD" fill-opacity=".6">
+    <circle cx="280" cy="510" r="3"/><circle cx="260" cy="491" r="2.5"/><circle cx="245" cy="470" r="2"/>
+    <circle cx="1540" cy="546" r="3"/><circle cx="1560" cy="526" r="2.5"/><circle cx="1575" cy="504" r="2"/>
+  </g>
+  <path d="M155 630v10m-5-5h10M1645 670v10m-5-5h10" stroke="#9392B4" stroke-opacity=".45" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

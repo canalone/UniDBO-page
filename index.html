@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="UniDBO: A Unified Dual-Branch One-Step Denoising Framework for Autonomous Driving Scenario Generation. NeurIPS 2026, Tongji University.">
+  <meta name="keywords" content="UniDBO, autonomous driving, scenario generation, one-step denoising, traffic simulation, NeurIPS 2026">
+  <meta name="author" content="Da Zhao, Yuhang Chen, Jie Sun, Jialin Fan, Jian Sun">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="UniDBO: A Unified Dual-Branch One-Step Denoising Framework for Autonomous Driving Scenario Generation">
+  <meta property="og:description" content="A unified dual-branch one-step denoising framework for autonomous driving scenario generation. NeurIPS 2026.">
+  <title>UniDBO: A Unified Dual-Branch One-Step Denoising Framework for Autonomous Driving Scenario Generation</title>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <svg class="art-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="icon-branches" viewBox="0 0 64 64">
+      <path class="icon-wash" d="M15 9h34a8 8 0 0 1 8 8v30a8 8 0 0 1-8 8H15a8 8 0 0 1-8-8V17a8 8 0 0 1 8-8Z"/>
+      <path d="M32 44V33m0 0c0-13-15-5-15-19m15 19c0-13 15-5 15-19"/>
+      <rect x="24" y="42" width="16" height="12" rx="4"/><circle cx="17" cy="13" r="5"/><circle cx="47" cy="13" r="5"/>
+      <path class="icon-detail" d="M17 25v9m30-9v9M12 38h10m20 0h10"/>
+    </symbol>
+    <symbol id="icon-loop" viewBox="0 0 64 64">
+      <circle class="icon-wash" cx="32" cy="32" r="26"/>
+      <path d="M13 23a21 21 0 0 1 37-5l3 5m0 0-1-10m1 10-10-1M51 41a21 21 0 0 1-37 5l-3-5m0 0 1 10m-1-10 10 1"/>
+      <rect x="21" y="25" width="22" height="14" rx="4"/><path d="M26 25v14m12-14v14"/>
+      <path class="icon-detail" d="M29 18h6m-6 28h6"/>
+    </symbol>
+    <symbol id="icon-domains" viewBox="0 0 64 64">
+      <circle class="icon-wash" cx="32" cy="32" r="26"/>
+      <circle cx="32" cy="32" r="22"/><ellipse cx="32" cy="32" rx="10" ry="22"/><path d="M11 26h42M11 38h42"/>
+      <path class="icon-detail" d="M6 48c9 9 44-12 52-30m-9 1 9-1-1 9"/>
+      <circle class="icon-node" cx="16" cy="44" r="4"/><circle class="icon-node" cx="47" cy="22" r="4"/>
+    </symbol>
+    <symbol id="icon-testing" viewBox="0 0 64 64">
+      <path class="icon-wash" d="m32 5 24 9v20c0 13-12 23-24 27C20 57 8 47 8 34V14Z"/>
+      <path d="m32 10 19 7v17c0 10-10 18-19 22-9-4-19-12-19-22V17Z"/>
+      <path d="m23 28 3-7h12l3 7M22 28h20v12H22zM26 40v4m12-4v4M26 32h1m10 0h1"/>
+      <path class="icon-detail" d="m29 46 3 3 6-6"/>
+    </symbol>
+  </svg>
+  <nav class="site-nav" aria-label="Main navigation">
+    <span class="reading-progress" aria-hidden="true"></span>
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="UniDBO project page home">
+        <img class="brand-mark" src="assets/images/favicon.svg" width="38" height="38" alt="">
+        <span>UniDBO</span>
+      </a>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#framework">Method</a>
+        <a href="#womd">WOMD</a>
+        <a href="#interaction">INTERACTION</a>
+        <a href="#onsite">OnSite</a>
+        <a href="#bibtex">BibTeX</a>
+      </div>
+      <button class="motion-toggle" id="motion-toggle" type="button" aria-label="Pause decorative motion and video autoplay" aria-pressed="false" title="Pause motion" hidden>
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path class="pause-mark" d="M7 5v10m6-10v10"/><path class="play-mark" d="m7 5 8 5-8 5Z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <img class="hero-routes" src="assets/images/branch-motif.svg" alt="" aria-hidden="true" width="1800" height="920">
+    <svg class="hero-signals" viewBox="0 0 1800 920" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="signal-trail" pathLength="100" d="M-50 177H80c170 0 62 355 280 355h160"/>
+      <path class="signal-trail signal-delayed" pathLength="100" d="M-50 177H80c170 0 62 355 280 355h160"/>
+      <g transform="translate(1800 40) scale(-1 1)">
+        <path class="signal-trail signal-opposite" pathLength="100" d="M-50 177H80c170 0 62 355 280 355h160"/>
+        <path class="signal-trail signal-delayed" pathLength="100" d="M-50 177H80c170 0 62 355 280 355h160"/>
+      </g>
+    </svg>
+    <div class="hero-content">
+      <a class="venue-badge" href="https://neurips.cc/virtual/2026/poster/149995" target="_blank" rel="noopener noreferrer">
+        <span class="venue-dot" aria-hidden="true"></span> <strong>NeurIPS 2026</strong> <span class="venue-separator" aria-hidden="true">·</span> Main Track · Poster
+      </a>
+      <h1 class="title">
+        <span class="wordmark-stage"><strong class="title-brand">UniDBO</strong></span><span class="sr-only">: </span>
+        <span class="title-description">A Unified Dual-Branch One-Step Denoising Framework<br class="desktop-break"> for Autonomous Driving Scenario Generation</span>
+      </h1>
+      <p class="authors">
+        <span class="author"><a href="https://tops.tongji.edu.cn/" target="_blank" rel="noopener noreferrer">Da Zhao</a><sup>1</sup>,</span>
+        <span class="author"><a href="https://tops.tongji.edu.cn/" target="_blank" rel="noopener noreferrer">Yuhang Chen</a><sup>1</sup>,</span>
+        <span class="author"><a href="https://tops.tongji.edu.cn/" target="_blank" rel="noopener noreferrer">Jie Sun</a><sup>1,✉</sup>,</span>
+        <span class="author"><a href="https://tops.tongji.edu.cn/" target="_blank" rel="noopener noreferrer">Jialin Fan</a><sup>1</sup>,</span>
+        <span class="author">and <a href="https://tops.tongji.edu.cn/" target="_blank" rel="noopener noreferrer">Jian Sun</a><sup>1</sup></span>
+      </p>
+      <p class="affiliation"><sup>1</sup> College of Transportation &amp; Key Laboratory of Road and Traffic Engineering of Ministry of Education, Tongji University, Shanghai, China</p>
+      <p class="correspondence"><span aria-hidden="true">✉</span> Corresponding author: Jie Sun</p>
+      <div class="button-row" aria-label="Project resources">
+        <a class="button primary" href="https://neurips.cc/virtual/2026/poster/149995" target="_blank" rel="noopener noreferrer">
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>
+          Paper
+        </a>
+        <a class="button" href="https://github.com/canalone/UniDBO" target="_blank" rel="noopener noreferrer">
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-14-2 18"/></svg>
+          Code
+        </a>
+        <button class="button" type="button" disabled title="Supplementary material will be added later">
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 17v4h14v-4"/></svg>
+          Supplementary
+        </button>
+        <button class="button" type="button" disabled title="Poster will be added later">
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>
+          Poster
+        </button>
+        <a class="button" href="#bibtex">
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5H4v7h5v7H4m16-14h-5v7h5v7h-5"/></svg>
+          BibTeX
+        </a>
+      </div>
+      <div class="concept-strip" aria-label="Joint training through a shared scene encoder, mode-aware branch activation, and one-step denoising">
+        <div class="concept-item"><svg aria-hidden="true"><use href="#icon-branches"/></svg><span><strong>Shared scene encoder</strong><small>Joint dual-noise supervision</small></span></div>
+        <span class="concept-connector" aria-hidden="true"></span>
+        <div class="concept-item"><span class="concept-monogram" aria-hidden="true">CS<span>/</span>DHN</span><span><strong>Two complementary branches</strong><small>Mode-aware activation</small></span></div>
+        <span class="concept-connector" aria-hidden="true"></span>
+        <div class="concept-item"><span class="concept-step" aria-hidden="true">1</span><span><strong>One-step denoising</strong><small>A single denoiser evaluation</small></span></div>
+      </div>
+      <div class="showcase-stage">
+        <div class="stage-heading"><span>UniDBO in action</span><a href="#womd">Explore the scenarios <span aria-hidden="true">↗</span></a></div>
+        <div class="hero-showcase" aria-label="Representative examples from the three evaluation settings">
+        <figure class="showcase-item">
+          <div class="showcase-media"><video autoplay muted loop playsinline controls preload="auto" aria-label="Preview of closed-loop simulation on WOMD with one-step denoising at each replan"><source src="assets/waymo/198f7a18370f7c3a.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+          <figcaption><a href="#womd"><svg class="showcase-icon" aria-hidden="true"><use href="#icon-loop"/></svg><span>Closed-loop Simulation</span><strong>WOMD <span aria-hidden="true">↗</span></strong></a></figcaption>
+        </figure>
+        <figure class="showcase-item">
+          <div class="showcase-media"><video autoplay muted loop playsinline controls preload="auto" aria-label="Preview of zero-shot generalization on INTERACTION"><source src="assets/interaction/DR_USA_Roundabout_EP__case_000180.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+          <figcaption><a href="#interaction"><svg class="showcase-icon" aria-hidden="true"><use href="#icon-domains"/></svg><span>Cross-domain Generalization</span><strong>INTERACTION <span aria-hidden="true">↗</span></strong></a></figcaption>
+        </figure>
+        <figure class="showcase-item">
+          <div class="showcase-media"><img src="assets/onsite/REPLAY_0_av2_highway_merge_2_2_273_result.gif" width="900" height="600" decoding="async" alt="Preview of background-traffic generation for AV testing on OnSite"></div>
+          <figcaption><a href="#onsite"><svg class="showcase-icon" aria-hidden="true"><use href="#icon-testing"/></svg><span>AV Testing</span><strong>OnSite <span aria-hidden="true">↗</span></strong></a></figcaption>
+        </figure>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <a class="back-to-top" href="#top" aria-label="Back to top" title="Back to top" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 11 6-6 6 6M12 5v14"/></svg></a>
+  <main id="main">
+    <section class="section" id="abstract" aria-labelledby="abstract-title">
+      <div class="container">
+        <div class="abstract-heading"><h2 class="section-title" id="abstract-title">Abstract</h2></div>
+        <div class="abstract-card">
+          <p>Scenario generation is essential for training, testing, and safety validation of autonomous vehicles (AVs), especially when real-world data coverage is limited and long-tail safety-critical events are rare. Existing methods mostly face a three-way trade-off among open-loop trajectory fitting, closed-loop simulation robustness, and inference efficiency. Autoregressive methods are typically efficient in open-loop fitting but susceptible to error accumulation and policy-induced state-distribution shift in long-horizon closed-loop rollouts. Diffusion-based methods provide strong multimodal behavior modeling and competitive generation quality, but iterative denoising substantially increases inference latency and limits simulation throughput. To address this challenge, we propose <strong>UniDBO</strong>, a <strong>Uni</strong>fied <strong>D</strong>ual-<strong>B</strong>ranch <strong>O</strong>ne-step denoising framework for autonomous driving scenario generation, which uses a shared scene encoder and two jointly optimized complementary branches with distinct roles—a continuous-scale branch (CS) for open-loop trajectory fitting and a discrete high-noise branch (DHN) for robust closed-loop simulation. Through joint training, UniDBO coordinates open-loop fitting and closed-loop robustness while preserving one-step inference efficiency. We evaluate UniDBO with different benchmarks, covering in-domain open-loop and closed-loop evaluation, zero-shot cross-domain generalization, and system-level closed-loop AV testing in unseen scenarios. Results show that UniDBO improves the open-loop/closed-loop balance while maintaining high inference efficiency, and achieves competitive zero-shot generalization on the evaluated benchmarks.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section method-section" id="framework" aria-labelledby="framework-title">
+      <div class="container">
+        <div class="section-heading">
+          <svg class="section-emblem" aria-hidden="true"><use href="#icon-branches"/></svg>
+          <h2 class="section-title" id="framework-title">Method Overview</h2>
+          <p class="section-subtitle">Joint training and mode-aware one-step denoising.</p>
+        </div>
+        <figure class="method-figure">
+          <a class="method-image" href="assets/images/method-framework.svg" target="_blank" rel="noopener noreferrer" aria-label="View the full-resolution UniDBO framework">
+            <img src="assets/images/method-framework.svg" width="4587" height="2341" loading="lazy" alt="UniDBO jointly trains a discrete high-noise branch (DHN) and a continuous-scale branch (CS) through a shared scene encoder. Inference uses CS for open-loop evaluation or DHN for closed-loop simulation, each requiring one denoising step.">
+          </a>
+          <div class="figure-tools"><div class="branch-legend" aria-label="Training and inference branches"><span class="legend-cs"><i aria-hidden="true"></i>CS · Continuous-scale branch</span><span class="legend-shared"><i aria-hidden="true"></i>Joint training · Shared scene encoder</span><span class="legend-dhn"><i aria-hidden="true"></i>DHN · Discrete high-noise branch</span></div><a class="figure-expand" href="assets/images/method-framework.svg" target="_blank" rel="noopener noreferrer">Full figure <span aria-hidden="true">↗</span></a></div>
+          <figcaption class="caption">UniDBO jointly trains two complementary branches through a <strong>shared scene encoder</strong>. During inference, only the branch corresponding to the evaluation mode is used: CS for open-loop evaluation and DHN for closed-loop simulation, each requiring <strong>one denoising step</strong>.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="womd" aria-labelledby="womd-title">
+      <div class="container">
+        <div class="section-heading">
+          <svg class="section-emblem" aria-hidden="true"><use href="#icon-loop"/></svg>
+          <span class="section-kicker">Closed-loop Simulation</span>
+          <h2 class="section-title" id="womd-title">Closed-loop Simulation Performance on <span class="dataset-name">WOMD</span></h2>
+        </div>
+        <p class="section-desc">We evaluate UniDBO on a fixed ordered set of <strong>1,000 WOMD/Waymax scenarios</strong> with eight-second closed-loop rollouts. At each one-second replan, DHN generates joint controls from an independent Gaussian query under the updated scene condition in <strong>one denoising step</strong>. The simulator executes the predicted prefix, and the resulting state defines the next scene condition.</p>
+        <div class="demo-grid grid-three">
+          <article class="demo-card">
+            <div class="media-wrap square"><video autoplay muted loop playsinline controls preload="auto" aria-label="UniDBO WOMD closed-loop simulation, scene 198f7a18370f7c3a"><source src="assets/waymo/198f7a18370f7c3a.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+            <div class="card-body"><h3 class="card-title">Scene 198f7a18370f7c3a</h3><p class="card-text">WOMD · Closed-loop simulation</p></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap square"><video autoplay muted loop playsinline controls preload="auto" aria-label="UniDBO WOMD closed-loop simulation, scene 392c06b4d2fa71c5"><source src="assets/waymo/392c06b4d2fa71c5.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+            <div class="card-body"><h3 class="card-title">Scene 392c06b4d2fa71c5</h3><p class="card-text">WOMD · Closed-loop simulation</p></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap square"><video autoplay muted loop playsinline controls preload="auto" aria-label="UniDBO WOMD closed-loop simulation, scene 49f66a10a23fe52"><source src="assets/waymo/49f66a10a23fe52.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+            <div class="card-body"><h3 class="card-title">Scene 49f66a10a23fe52</h3><p class="card-text">WOMD · Closed-loop simulation</p></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap square"><video autoplay muted loop playsinline controls preload="auto" aria-label="UniDBO WOMD closed-loop simulation, scene 4bceee78512251e6"><source src="assets/waymo/4bceee78512251e6.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+            <div class="card-body"><h3 class="card-title">Scene 4bceee78512251e6</h3><p class="card-text">WOMD · Closed-loop simulation</p></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap square"><video autoplay muted loop playsinline controls preload="auto" aria-label="UniDBO WOMD closed-loop simulation, scene 4fa2b889fb39d6b9"><source src="assets/waymo/4fa2b889fb39d6b9.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+            <div class="card-body"><h3 class="card-title">Scene 4fa2b889fb39d6b9</h3><p class="card-text">WOMD · Closed-loop simulation</p></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap square"><video autoplay muted loop playsinline controls preload="auto" aria-label="UniDBO WOMD closed-loop simulation, scene 56c468f1a8df64fc"><source src="assets/waymo/56c468f1a8df64fc.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+            <div class="card-body"><h3 class="card-title">Scene 56c468f1a8df64fc</h3><p class="card-text">WOMD · Closed-loop simulation</p></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap square"><video autoplay muted loop playsinline controls preload="auto" aria-label="UniDBO WOMD closed-loop simulation, scene 63a3a10409aeee0c"><source src="assets/waymo/63a3a10409aeee0c.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+            <div class="card-body"><h3 class="card-title">Scene 63a3a10409aeee0c</h3><p class="card-text">WOMD · Closed-loop simulation</p></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap square"><video autoplay muted loop playsinline controls preload="auto" aria-label="UniDBO WOMD closed-loop simulation, scene 6581a5a20383ecff"><source src="assets/waymo/6581a5a20383ecff.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+            <div class="card-body"><h3 class="card-title">Scene 6581a5a20383ecff</h3><p class="card-text">WOMD · Closed-loop simulation</p></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap square"><video autoplay muted loop playsinline controls preload="auto" aria-label="UniDBO WOMD closed-loop simulation, scene 7bc86b1cfe062dc3"><source src="assets/waymo/7bc86b1cfe062dc3.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+            <div class="card-body"><h3 class="card-title">Scene 7bc86b1cfe062dc3</h3><p class="card-text">WOMD · Closed-loop simulation</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="interaction" aria-labelledby="interaction-title">
+      <div class="container">
+        <div class="section-heading">
+          <svg class="section-emblem" aria-hidden="true"><use href="#icon-domains"/></svg>
+          <span class="section-kicker">Cross-domain Generalization</span>
+          <h2 class="section-title" id="interaction-title">Closed-loop Simulation Performance on <span class="dataset-name">INTERACTION</span></h2>
+        </div>
+        <p class="section-desc">We apply the WOMD-trained checkpoint to <strong>500 high-density INTERACTION scenarios</strong> <strong>without target-domain training or fine-tuning</strong>. The examples below show eight-second closed-loop rollouts across unseen merging, intersection, and roundabout scenes.</p>
+        <div class="demo-grid grid-two">
+          <article class="demo-card">
+            <div class="media-wrap square"><video autoplay muted loop playsinline controls preload="auto" aria-label="UniDBO zero-shot INTERACTION rollout, DR CHN Merging ZS, case 336"><source src="assets/interaction/DR_CHN_Merging_ZS__case_000336.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+            <div class="card-body"><h3 class="card-title">DR_CHN_Merging_ZS</h3><p class="card-text">Case 000336 · Merging</p></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap square"><video autoplay muted loop playsinline controls preload="auto" aria-label="UniDBO zero-shot INTERACTION rollout, DR USA Intersection GL, case 341"><source src="assets/interaction/DR_USA_Intersection_GL__case_000341.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+            <div class="card-body"><h3 class="card-title">DR_USA_Intersection_GL</h3><p class="card-text">Case 000341 · Intersection</p></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap square"><video autoplay muted loop playsinline controls preload="auto" aria-label="UniDBO zero-shot INTERACTION rollout, DR USA Roundabout EP, case 180"><source src="assets/interaction/DR_USA_Roundabout_EP__case_000180.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+            <div class="card-body"><h3 class="card-title">DR_USA_Roundabout_EP</h3><p class="card-text">Case 000180 · Roundabout</p></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap square"><video autoplay muted loop playsinline controls preload="auto" aria-label="UniDBO zero-shot INTERACTION rollout, DR USA Roundabout SR, case 39"><source src="assets/interaction/DR_USA_Roundabout_SR__case_000039.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+            <div class="card-body"><h3 class="card-title">DR_USA_Roundabout_SR</h3><p class="card-text">Case 000039 · Roundabout</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="onsite" aria-labelledby="onsite-title">
+      <div class="container">
+        <div class="section-heading">
+          <svg class="section-emblem" aria-hidden="true"><use href="#icon-testing"/></svg>
+          <span class="section-kicker">AV Testing</span>
+          <h2 class="section-title" id="onsite-title">AV Testing Performance on <span class="dataset-name">OnSite Benchmark</span></h2>
+        </div>
+        <p class="section-desc">We evaluate UniDBO in <strong>system-level AV testing</strong> on the <a href="https://www.onsite.com.cn/" target="_blank" rel="noopener noreferrer">OnSite</a> platform using <strong>800 organizer-provided scenarios</strong>. Each scenario supplies an HD map, existing-agent states, and a 31-frame scene prefix. UniDBO generates background-agent futures that interact with external ego planners under the same scoring protocol.</p>
+        <div class="demo-grid grid-three">
+          <article class="demo-card">
+            <div class="media-wrap"><img src="assets/onsite/REPLAY_0_av0_21_32_left_straight_in_opposite_35_result.gif" width="900" height="600" loading="lazy" decoding="async" alt="OnSite generated scenario involving left-turning and oncoming straight traffic"></div>
+            <div class="card-body"><h3 class="card-title">Left Turn &amp; Oncoming Traffic</h3></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap"><img src="assets/onsite/REPLAY_0_av0_2_83_straight_in_adjacent_left_87_result.gif" width="900" height="600" loading="lazy" decoding="async" alt="OnSite generated scenario involving straight driving and adjacent traffic"></div>
+            <div class="card-body"><h3 class="card-title">Straight &amp; Adjacent Traffic</h3></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap"><img src="assets/onsite/REPLAY_0_av1_1113follow1030_result.gif" width="900" height="600" loading="lazy" decoding="async" alt="OnSite generated car-following scenario"></div>
+            <div class="card-body"><h3 class="card-title">Car Following</h3></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap"><img src="assets/onsite/REPLAY_0_av2_2_812_merge_814_result.gif" width="900" height="600" loading="lazy" decoding="async" alt="OnSite generated merging scenario"></div>
+            <div class="card-body"><h3 class="card-title">Merging</h3></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap"><img src="assets/onsite/REPLAY_0_av2_crossing_128_34_0_result.gif" width="900" height="600" loading="lazy" decoding="async" alt="OnSite generated crossing scenario"></div>
+            <div class="card-body"><h3 class="card-title">Crossing</h3></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap"><img src="assets/onsite/REPLAY_0_av2_highway_merge_2_2_273_result.gif" width="900" height="600" loading="lazy" decoding="async" alt="OnSite generated highway-merging scenario"></div>
+            <div class="card-body"><h3 class="card-title">Highway Merging</h3></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap"><img src="assets/onsite/REPLAY_0_av3_1_632_merge_651_result.gif" width="900" height="600" loading="lazy" decoding="async" alt="OnSite generated merging-interaction scenario"></div>
+            <div class="card-body"><h3 class="card-title">Merging Interaction</h3></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap"><img src="assets/onsite/REPLAY_0_av3_8_2_1_251_result.gif" width="900" height="600" loading="lazy" decoding="async" alt="OnSite generated traffic-interaction scenario"></div>
+            <div class="card-body"><h3 class="card-title">Traffic Interaction</h3></div>
+          </article>
+          <article class="demo-card">
+            <div class="media-wrap"><img src="assets/onsite/REPLAY_0_av3_mixed_752_7_0_result.gif" width="900" height="600" loading="lazy" decoding="async" alt="OnSite generated mixed-traffic scenario"></div>
+            <div class="card-body"><h3 class="card-title">Mixed Traffic</h3></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="bibtex" aria-labelledby="bibtex-title">
+      <div class="container">
+        <div class="section-heading"><h2 class="section-title" id="bibtex-title">BibTeX</h2></div>
+        <div class="bib-card">
+          <div class="bib-header"><span class="bib-label">Citation</span><button class="copy-btn" id="copy-bibtex" type="button">Copy</button></div>
+          <pre tabindex="0" aria-label="UniDBO BibTeX citation"><code id="citation">@inproceedings{zhao2026unidbo,
+  title     = {{UniDBO}: A Unified Dual-Branch One-Step Denoising Framework for Autonomous Driving Scenario Generation},
+  author    = {Zhao, Da and Chen, Yuhang and Sun, Jie and Fan, Jialin and Sun, Jian},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2026},
+  url       = {https://neurips.cc/virtual/2026/poster/149995}
+}</code></pre>
+        </div>
+        <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="demo-viewer" id="demo-viewer" aria-labelledby="viewer-title">
+    <div class="viewer-header"><div><span class="viewer-dataset" id="viewer-dataset"></span><h2 id="viewer-title" aria-live="polite"></h2></div><button class="viewer-close" type="button" aria-label="Close enlarged view" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div class="viewer-media" id="viewer-media"></div>
+    <div class="viewer-footer"><button class="viewer-prev" type="button"><span aria-hidden="true">←</span> Previous scene</button><span class="viewer-hint">Esc to close</span><button class="viewer-next" type="button">Next scene <span aria-hidden="true">→</span></button></div>
+  </dialog>
+
+  <footer class="footer">
+    <a class="footer-brand" href="#top"><img src="assets/images/favicon.svg" width="32" height="32" alt=""><span>UniDBO</span></a>
+    <p><a href="https://tops.tongji.edu.cn/" target="_blank" rel="noopener noreferrer">TOPS Research Group</a><span class="footer-divider" aria-hidden="true">·</span><a href="https://www.onsite.com.cn/" target="_blank" rel="noopener noreferrer">OnSite</a><span class="footer-divider" aria-hidden="true">·</span>Tongji University</p>
+    <p>Layout inspired by the <a href="https://nova-chen151.github.io/simCDPT.github.io/" target="_blank" rel="noopener noreferrer">CDPT project page</a> and the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a>, adapted from <a href="https://nerfies.github.io/" target="_blank" rel="noopener noreferrer">Nerfies</a>.</p>
+  </footer>
+</body>
+</html>
