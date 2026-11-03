@@ -56,7 +56,6 @@
         <a href="#womd">WOMD</a>
         <a href="#interaction">INTERACTION</a>
         <a href="#onsite">OnSite</a>
-        <a href="#bibtex">BibTeX</a>
       </div>
       <button class="motion-toggle" id="motion-toggle" type="button" aria-label="Pause decorative motion and video autoplay" aria-pressed="false" title="Pause motion" hidden>
         <svg viewBox="0 0 20 20" aria-hidden="true"><path class="pause-mark" d="M7 5v10m6-10v10"/><path class="play-mark" d="m7 5 8 5-8 5Z"/></svg>
@@ -109,10 +108,6 @@
           <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>
           Poster
         </button>
-        <a class="button" href="#bibtex">
-          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5H4v7h5v7H4m16-14h-5v7h5v7h-5"/></svg>
-          BibTeX
-        </a>
       </div>
       <div class="concept-strip" aria-label="Joint training through a shared scene encoder, mode-aware branch activation, and one-step denoising">
         <div class="concept-item"><svg aria-hidden="true"><use href="#icon-branches"/></svg><span><strong>Shared scene encoder</strong><small>Joint dual-noise supervision</small></span></div>
@@ -147,7 +142,7 @@
       <div class="container">
         <div class="abstract-heading"><h2 class="section-title" id="abstract-title">Abstract</h2></div>
         <div class="abstract-card">
-          <p>Scenario generation is essential for training, testing, and safety validation of autonomous vehicles (AVs), especially when real-world data coverage is limited and long-tail safety-critical events are rare. Existing methods mostly face a three-way trade-off among open-loop trajectory fitting, closed-loop simulation robustness, and inference efficiency. Autoregressive methods are typically efficient in open-loop fitting but susceptible to error accumulation and policy-induced state-distribution shift in long-horizon closed-loop rollouts. Diffusion-based methods provide strong multimodal behavior modeling and competitive generation quality, but iterative denoising substantially increases inference latency and limits simulation throughput. To address this challenge, we propose <strong>UniDBO</strong>, a <strong>Uni</strong>fied <strong>D</strong>ual-<strong>B</strong>ranch <strong>O</strong>ne-step denoising framework for autonomous driving scenario generation, which uses a shared scene encoder and two jointly optimized complementary branches with distinct roles—a continuous-scale branch (CS) for open-loop trajectory fitting and a discrete high-noise branch (DHN) for robust closed-loop simulation. Through joint training, UniDBO coordinates open-loop fitting and closed-loop robustness while preserving one-step inference efficiency. We evaluate UniDBO with different benchmarks, covering in-domain open-loop and closed-loop evaluation, zero-shot cross-domain generalization, and system-level closed-loop AV testing in unseen scenarios. Results show that UniDBO improves the open-loop/closed-loop balance while maintaining high inference efficiency, and achieves competitive zero-shot generalization on the evaluated benchmarks.</p>
+          <p>Traffic scenario generation is essential for training, testing, and safety validation of autonomous vehicles (AVs), especially when real-world data coverage is limited. Existing methods mostly face a three-way trade-off among open-loop trajectory fitting, closed-loop simulation robustness, and inference efficiency. Autoregressive methods are typically efficient in open-loop fitting but susceptible to error accumulation and policy-induced state-distribution shift in long-horizon closed-loop rollouts. Diffusion-based methods provide strong multi-modal behavior modeling and competitive generation quality, but iterative denoising substantially increases inference latency and limits simulation throughput. Moreover, repeated refinement under a fixed scene condition is not fully aligned with the continuous feedback and frequent replanning required by closed-loop simulation. To address this challenge, we propose <strong>UniDBO</strong>, a <strong>Uni</strong>fied <strong>D</strong>ual-<strong>B</strong>ranch <strong>O</strong>ne-step denoising framework for autonomous driving scenario generation, which uses a shared scene encoder and two jointly optimized complementary branches with distinct roles—a continuous-scale branch (CS) for open-loop trajectory fitting and a discrete high-noise branch (DHN) for robust closed-loop simulation. Through joint training, UniDBO coordinates open-loop fitting and closed-loop robustness while preserving one-step inference efficiency. We evaluate UniDBO with different benchmarks, covering in-domain open-loop and closed-loop evaluation, zero-shot cross-domain generalization, and system-level closed-loop AV testing in unseen scenarios. Results show that UniDBO improves the open-loop/closed-loop balance while maintaining high inference efficiency, and achieves competitive zero-shot generalization on the evaluated benchmarks. Code is available at <a href="https://github.com/canalone/UniDBO" target="_blank" rel="noopener noreferrer">https://github.com/canalone/UniDBO</a>.</p>
         </div>
       </div>
     </section>
@@ -160,10 +155,10 @@
           <p class="section-subtitle">Joint training and mode-aware one-step denoising.</p>
         </div>
         <figure class="method-figure">
-          <a class="method-image" href="assets/images/method-framework.svg" target="_blank" rel="noopener noreferrer" aria-label="View the full-resolution UniDBO framework">
-            <img src="assets/images/method-framework.svg" width="4587" height="2341" loading="lazy" alt="UniDBO jointly trains a discrete high-noise branch (DHN) and a continuous-scale branch (CS) through a shared scene encoder. Inference uses CS for open-loop evaluation or DHN for closed-loop simulation, each requiring one denoising step.">
+          <a class="method-image" href="assets/images/method-framework.svg?v=780636957878" target="_blank" rel="noopener noreferrer" aria-label="View the full-resolution UniDBO framework">
+            <img src="assets/images/method-framework.svg?v=780636957878" width="4587" height="2341" loading="lazy" alt="UniDBO jointly trains a discrete high-noise branch (DHN) and a continuous-scale branch (CS) through a shared scene encoder. Inference uses CS for open-loop evaluation or DHN for closed-loop simulation, each requiring one denoising step.">
           </a>
-          <div class="figure-tools"><div class="branch-legend" aria-label="Training and inference branches"><span class="legend-cs"><i aria-hidden="true"></i>CS · Continuous-scale branch</span><span class="legend-shared"><i aria-hidden="true"></i>Joint training · Shared scene encoder</span><span class="legend-dhn"><i aria-hidden="true"></i>DHN · Discrete high-noise branch</span></div><a class="figure-expand" href="assets/images/method-framework.svg" target="_blank" rel="noopener noreferrer">Full figure <span aria-hidden="true">↗</span></a></div>
+          <div class="figure-tools"><div class="branch-legend" aria-label="Training and inference branches"><span class="legend-cs"><i aria-hidden="true"></i>CS · Continuous-scale branch</span><span class="legend-shared"><i aria-hidden="true"></i>Joint training · Shared scene encoder</span><span class="legend-dhn"><i aria-hidden="true"></i>DHN · Discrete high-noise branch</span></div><a class="figure-expand" href="assets/images/method-framework.svg?v=780636957878" target="_blank" rel="noopener noreferrer">Full figure <span aria-hidden="true">↗</span></a></div>
           <figcaption class="caption">UniDBO jointly trains two complementary branches through a <strong>shared scene encoder</strong>. During inference, only the branch corresponding to the evaluation mode is used: CS for open-loop evaluation and DHN for closed-loop simulation, each requiring <strong>one denoising step</strong>.</figcaption>
         </figure>
       </div>
@@ -293,23 +288,6 @@
             <div class="card-body"><h3 class="card-title">Mixed Traffic</h3></div>
           </article>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="bibtex" aria-labelledby="bibtex-title">
-      <div class="container">
-        <div class="section-heading"><h2 class="section-title" id="bibtex-title">BibTeX</h2></div>
-        <div class="bib-card">
-          <div class="bib-header"><span class="bib-label">Citation</span><button class="copy-btn" id="copy-bibtex" type="button">Copy</button></div>
-          <pre tabindex="0" aria-label="UniDBO BibTeX citation"><code id="citation">@inproceedings{zhao2026unidbo,
-  title     = {{UniDBO}: A Unified Dual-Branch One-Step Denoising Framework for Autonomous Driving Scenario Generation},
-  author    = {Zhao, Da and Chen, Yuhang and Fan, Jialin and Sun, Jian and Sun, Jie},
-  booktitle = {Advances in Neural Information Processing Systems},
-  year      = {2026},
-  url       = {https://neurips.cc/virtual/2026/poster/149995}
-}</code></pre>
-        </div>
-        <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
       </div>
     </section>
   </main>

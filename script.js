@@ -72,49 +72,6 @@ document.querySelectorAll(".showcase-item, .demo-card, .method-image").forEach((
   });
 });
 
-const copyButton = document.getElementById("copy-bibtex");
-const citation = document.getElementById("citation");
-const copyStatus = document.getElementById("copy-status");
-let resetCopyButton;
-
-function selectCitation() {
-  const range = document.createRange();
-  range.selectNodeContents(citation);
-  const selection = window.getSelection();
-  selection.removeAllRanges();
-  selection.addRange(range);
-}
-
-copyButton.addEventListener("click", async () => {
-  const text = citation.textContent.trim();
-  let copied = false;
-  try {
-    if (window.isSecureContext && navigator.clipboard) {
-      await navigator.clipboard.writeText(text);
-      copied = true;
-    }
-  } catch {
-    copied = false;
-  }
-  if (!copied) {
-    selectCitation();
-    try {
-      copied = document.execCommand("copy");
-    } catch {
-      copied = false;
-    }
-  }
-  window.clearTimeout(resetCopyButton);
-  copyButton.textContent = copied ? "Copied!" : "Selected";
-  copyStatus.textContent = copied
-    ? "BibTeX copied to clipboard."
-    : "Citation selected. Press Ctrl+C or Command+C to copy.";
-  resetCopyButton = window.setTimeout(() => {
-    copyButton.textContent = "Copy";
-    copyStatus.textContent = "";
-  }, 3500);
-});
-
 const navLinks = Array.from(document.querySelectorAll(".nav-links a"));
 const sections = [document.getElementById("top"), ...navLinks.map((link) => document.querySelector(link.getAttribute("href")))];
 
@@ -128,7 +85,7 @@ if ("IntersectionObserver" in window) {
       window.setTimeout(() => target.classList.remove("is-entering"), 700);
     });
   }, { threshold: 0.08 });
-  document.querySelectorAll(".section-heading, .abstract-heading, .showcase-item, .method-figure, .demo-card, .bib-card").forEach((element) => arrivalObserver.observe(element));
+  document.querySelectorAll(".section-heading, .abstract-heading, .showcase-item, .method-figure, .demo-card").forEach((element) => arrivalObserver.observe(element));
 
   const sectionObserver = new IntersectionObserver((entries) => {
     const current = entries.find((entry) => entry.isIntersecting);
