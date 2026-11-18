@@ -2,6 +2,20 @@
 
 Standalone static website for **UniDBO: A Unified Dual-Branch One-Step Denoising Framework for Autonomous Driving Scenario Generation**, NeurIPS 2026.
 
+[Project page](https://canalone.github.io/UniDBO-page/) · [Paper on OpenReview](https://openreview.net/forum?id=lcbL2baE12) · [NeurIPS 2026 (Sydney)](https://neurips.cc/virtual/2026/loc/sydney/poster/149995) · [Poster (PNG)](https://neurips.cc/media/PosterPDFs/NeurIPS%202026/149995.png?t=1794316013.6818821) · [Code repository](https://github.com/canalone/UniDBO)
+
+## Citation
+
+```bibtex
+@inproceedings{zhao2026unidbo,
+  title     = {Uni{DBO}: A Unified Dual-Branch One-Step Denoising Framework for Autonomous Driving Scenario Generation},
+  author    = {Da Zhao and Yuhang Chen and Jialin Fan and Jian Sun and Jie Sun},
+  booktitle = {The Fortieth Annual Conference on Neural Information Processing Systems},
+  year      = {2026},
+  url       = {https://openreview.net/forum?id=lcbL2baE12}
+}
+```
+
 ## Local preview
 
 Run from this folder:
@@ -23,7 +37,7 @@ The interface uses a white background, Arial typography, dark text, and coordina
 
 On desktop, WOMD and OnSite have three examples per row; INTERACTION has two. Galleries adapt to smaller screens. Videos load directly from the supplied MP4 files, play muted and loop when in view, with native playback controls shown on hover or focus on desktop.
 
-The abstract follows `UniDBO_NeurIPS_2026 (3).pdf`, with its final code-availability sentence omitted. It is displayed as one justified paragraph, with a naturally left-aligned final line and automatic English hyphenation where supported. Bold emphasis matches the paper exactly: `UniDBO`, and the `Uni`, `D`, `B`, and `O` in the expanded name. The repository is linked through the Code button. Supplementary and poster buttons are disabled until their URLs are available. No DOI, publication page numbers, visitor counts, or new experiment results are invented.
+The abstract follows `UniDBO_NeurIPS_2026 (3).pdf`, with its final code-availability sentence omitted. It is displayed as one justified paragraph, with a naturally left-aligned final line and automatic English hyphenation where supported. Bold emphasis matches the paper exactly: `UniDBO`, and the `Uni`, `D`, `B`, and `O` in the expanded name. The resource buttons link to OpenReview, the code repository, and the official poster. The NeurIPS badge links to the Sydney conference listing.
 
 Decorative SVG trajectory pulses, resource-button sheen, a reading-progress line, and pointer-following card borders add lightweight visual feedback. A compact strip introduces the shared scene encoder, two complementary branches with mode-aware activation, and one-step denoising, while a unified preview stage presents the three evaluation settings. Method terminology follows the latest paper: CS is the continuous-scale branch for open-loop evaluation, and DHN is the discrete high-noise branch for closed-loop simulation. Each query activates only its designated branch and requires a single denoiser evaluation; closed-loop simulation repeats this process at each replan. Headings and galleries enter gently as they scroll into view; their content remains available without JavaScript. Motion can be paused from the navigation and is disabled for the system's reduced-motion preference. The decorative trajectories are illustrations, not additional simulation results.
 
@@ -31,17 +45,7 @@ Each example has an **Expand** button for a larger view. The viewer supports pre
 
 ## GitHub Pages
 
-Push the **contents of this folder** to a separate repository, such as `UniDBO-page`. Keep the repository private and leave Pages disabled while preparing the page.
-
-When ready to publish using a public repository:
-
-1. Open **Settings → Pages**.
-2. Select **Deploy from a branch**.
-3. Select **main** and **/(root)**, then save.
-
-For the repository `canalone/UniDBO-page`, the default address will be `https://canalone.github.io/UniDBO-page/`. All local asset links are relative and support this project-site path. The model-code repository is independent and is not changed by this website.
-
-To fill in the supplementary or poster URL, replace its disabled button in `index.html` with an anchor using the same `button` class.
+GitHub Pages publishes the project website from the root of the `main` branch of `canalone/UniDBO-page`. The live address is [canalone.github.io/UniDBO-page](https://canalone.github.io/UniDBO-page/). Asset paths are relative to support this project-site URL.
 
 ## Layout reference
 

@@ -72,6 +72,46 @@ document.querySelectorAll(".showcase-item, .demo-card, .method-image").forEach((
   });
 });
 
+const copyButton = document.getElementById("copy-bibtex");
+const citation = document.getElementById("citation");
+const copyStatus = document.getElementById("copy-status");
+let resetCopyButton;
+
+copyButton.hidden = false;
+copyButton.addEventListener("click", async () => {
+  let copied = false;
+  try {
+    await navigator.clipboard?.writeText(citation.textContent.trim());
+    copied = Boolean(navigator.clipboard);
+  } catch {
+    // Clipboard access may be blocked in a local preview.
+  }
+
+  const selection = window.getSelection();
+  if (!copied && selection) {
+    const range = document.createRange();
+    range.selectNodeContents(citation);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    try {
+      copied = document.execCommand("copy");
+    } catch {
+      // Keep the citation selected for manual copying.
+    }
+    if (copied) selection.removeAllRanges();
+  }
+
+  window.clearTimeout(resetCopyButton);
+  copyButton.textContent = copied ? "Copied!" : "Copy";
+  copyStatus.textContent = copied
+    ? "BibTeX copied to clipboard."
+    : "Press Ctrl+C or Command+C to copy the citation.";
+  resetCopyButton = window.setTimeout(() => {
+    copyButton.textContent = "Copy";
+    copyStatus.textContent = "";
+  }, 3500);
+});
+
 const navLinks = Array.from(document.querySelectorAll(".nav-links a"));
 const sections = [document.getElementById("top"), ...navLinks.map((link) => document.querySelector(link.getAttribute("href")))];
 

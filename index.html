@@ -6,11 +6,21 @@
   <meta name="description" content="UniDBO: A Unified Dual-Branch One-Step Denoising Framework for Autonomous Driving Scenario Generation. NeurIPS 2026, Tongji University.">
   <meta name="keywords" content="UniDBO, autonomous driving, scenario generation, one-step denoising, traffic simulation, NeurIPS 2026">
   <meta name="author" content="Da Zhao, Yuhang Chen, Jialin Fan, Jian Sun, Jie Sun">
+  <meta name="citation_title" content="UniDBO: A Unified Dual-Branch One-Step Denoising Framework for Autonomous Driving Scenario Generation">
+  <meta name="citation_author" content="Da Zhao">
+  <meta name="citation_author" content="Yuhang Chen">
+  <meta name="citation_author" content="Jialin Fan">
+  <meta name="citation_author" content="Jian Sun">
+  <meta name="citation_author" content="Jie Sun">
+  <meta name="citation_conference_title" content="The Fortieth Annual Conference on Neural Information Processing Systems">
+  <meta name="citation_publication_date" content="2026">
   <meta name="theme-color" content="#ffffff">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://canalone.github.io/UniDBO-page/">
   <meta property="og:title" content="UniDBO: A Unified Dual-Branch One-Step Denoising Framework for Autonomous Driving Scenario Generation">
   <meta property="og:description" content="A unified dual-branch one-step denoising framework for autonomous driving scenario generation. NeurIPS 2026.">
   <title>UniDBO: A Unified Dual-Branch One-Step Denoising Framework for Autonomous Driving Scenario Generation</title>
+  <link rel="canonical" href="https://canalone.github.io/UniDBO-page/">
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
@@ -56,6 +66,7 @@
         <a href="#womd">WOMD</a>
         <a href="#interaction">INTERACTION</a>
         <a href="#onsite">OnSite</a>
+        <a href="#bibtex">BibTeX</a>
       </div>
       <button class="motion-toggle" id="motion-toggle" type="button" aria-label="Pause decorative motion and video autoplay" aria-pressed="false" title="Pause motion" hidden>
         <svg viewBox="0 0 20 20" aria-hidden="true"><path class="pause-mark" d="M7 5v10m6-10v10"/><path class="play-mark" d="m7 5 8 5-8 5Z"/></svg>
@@ -74,7 +85,7 @@
       </g>
     </svg>
     <div class="hero-content">
-      <a class="venue-badge" href="https://neurips.cc/virtual/2026/poster/149995" target="_blank" rel="noopener noreferrer">
+      <a class="venue-badge" href="https://neurips.cc/virtual/2026/loc/sydney/poster/149995" target="_blank" rel="noopener noreferrer">
         <span class="venue-dot" aria-hidden="true"></span> <strong>NeurIPS 2026</strong> <span class="venue-separator" aria-hidden="true">·</span> Main Track · Poster
       </a>
       <h1 class="title">
@@ -92,7 +103,7 @@
       <p class="correspondence"><span aria-hidden="true">✉</span> Corresponding author: Jie Sun</p>
       <p class="correspondence">Emails: {da_zhao, yuhangchen, jialin_fan, sunjian, jie_sun}@tongji.edu.cn</p>
       <div class="button-row" aria-label="Project resources">
-        <a class="button primary" href="https://neurips.cc/virtual/2026/poster/149995" target="_blank" rel="noopener noreferrer">
+        <a class="button primary" href="https://openreview.net/forum?id=lcbL2baE12" target="_blank" rel="noopener noreferrer">
           <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>
           Paper
         </a>
@@ -100,14 +111,14 @@
           <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-14-2 18"/></svg>
           Code
         </a>
-        <button class="button" type="button" disabled title="Supplementary material will be added later">
-          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 17v4h14v-4"/></svg>
-          Supplementary
-        </button>
-        <button class="button" type="button" disabled title="Poster will be added later">
+        <a class="button" href="https://neurips.cc/media/PosterPDFs/NeurIPS%202026/149995.png?t=1794316013.6818821" target="_blank" rel="noopener noreferrer" aria-label="View the official poster (PNG)">
           <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>
           Poster
-        </button>
+        </a>
+        <a class="button" href="#bibtex">
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5H4v7h5v7H4m16-14h-5v7h5v7h-5"/></svg>
+          BibTeX
+        </a>
       </div>
       <div class="concept-strip" aria-label="Joint training through a shared scene encoder, mode-aware branch activation, and one-step denoising">
         <div class="concept-item"><svg aria-hidden="true"><use href="#icon-branches"/></svg><span><strong>Shared scene encoder</strong><small>Joint dual-noise supervision</small></span></div>
@@ -288,6 +299,22 @@
             <div class="card-body"><h3 class="card-title">Mixed Traffic</h3></div>
           </article>
         </div>
+      </div>
+    </section>
+    <section class="section" id="bibtex" aria-labelledby="bibtex-title">
+      <div class="container">
+        <div class="section-heading"><h2 class="section-title" id="bibtex-title">BibTeX</h2></div>
+        <div class="bib-card">
+          <div class="bib-header"><span class="bib-label">Citation</span><button class="copy-btn" id="copy-bibtex" type="button" aria-label="Copy BibTeX citation" hidden>Copy</button></div>
+          <pre tabindex="0" aria-label="UniDBO BibTeX citation"><code id="citation">@inproceedings{zhao2026unidbo,
+  title     = {Uni{DBO}: A Unified Dual-Branch One-Step Denoising Framework for Autonomous Driving Scenario Generation},
+  author    = {Da Zhao and Yuhang Chen and Jialin Fan and Jian Sun and Jie Sun},
+  booktitle = {The Fortieth Annual Conference on Neural Information Processing Systems},
+  year      = {2026},
+  url       = {https://openreview.net/forum?id=lcbL2baE12}
+}</code></pre>
+        </div>
+        <p class="copy-status" id="copy-status" role="status"></p>
       </div>
     </section>
   </main>

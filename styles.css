@@ -174,6 +174,7 @@ sup { font-size: .65em; line-height: 0; }
 .bib-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 13px 23px; border-bottom: 1px solid #e6dceb; background: linear-gradient(110deg, #f3eff8, #f8f1f6); }
 .bib-label { color: var(--accent); font-size: 16px; font-weight: 700; }
 .copy-btn { min-width: 78px; min-height: 40px; padding: 6px 16px; border-radius: 6px; font-size: 15px; }
+.copy-btn[hidden] { display: none; }
 pre { margin: 0; padding: 26px; overflow-x: auto; background: #fff; color: #4c3d5a; white-space: pre; font-size: 15px; line-height: 1.9; }
 code { font-family: Consolas, "Liberation Mono", Menlo, monospace; }
 .copy-status { min-height: 26px; margin: 10px 0 0; color: var(--muted); font-size: 14px; text-align: right; }
